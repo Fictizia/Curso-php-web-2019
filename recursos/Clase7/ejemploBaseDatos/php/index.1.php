@@ -1,5 +1,5 @@
 <?php
-    $servername = "mysql_db";
+    $servername = "127.0.0.1";
     $serverport = "3306";
     $dbname = "clase7";
     $username = "devuser";

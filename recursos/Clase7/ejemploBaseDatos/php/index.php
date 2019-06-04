@@ -20,5 +20,7 @@
             } 
             echo "Connected successfully";
         ?>
+
+        <a href="./index.1.php">Lista de usuarios</a>
     </body>
 </html>

@@ -1,26 +1,28 @@
 <?php
+
+    /**Importamos los ficheros de las clases que se van a usar en este fichero */
     require_once('./model/User.php');    
     require_once('./repository/UserRepository.php');
+    require_once('./services/dbConnectionManager.php');
 
-    $servername = "mysql_db_C8";
-    $serverport = "3306";
-    $dbname = "clase8";
-    $username = "devuser";
-    $password = "devpass";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname, $serverport);
-
-    $userRepository = new UserRepository($conn);
-    
+    /**Recibimos por GET el Id del usuario que hemos enviado por hhtp desde el fichero index.php*/
     $userId = $_GET['user'];
 ?>
 
 <h1>User To delete <?php echo $userId; ?></h1>
 <?php
 
+    /** Recibimos en $user el objeto con el usuario que retorna la funcion getById a la que le hemos
+     * pasado la Id del usuario que buscamos
+    */
     $user = $userRepository->getById($userId);
+
+    /**Almacenamos en $deleted el valor true o false dependiendo de los que retorne la funcion delete,
+     * si ha realizado con exito o no la consulta DELETE del usaurio que le hemos pasado
+     */
     $deleted = $userRepository->delete($user);
+
+    /**Evaluamos si es true o false y mostramos un mensaje u otro en funcion de ello */
     if ($deleted) {
         echo "<p> user properly deleted </p>";
     } else {

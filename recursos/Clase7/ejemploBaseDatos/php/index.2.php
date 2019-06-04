@@ -1,7 +1,7 @@
 <?php
     require_once('./User.php');
 
-    $servername = "mysql_db";
+    $servername = "127.0.0.1";
     $serverport = "3306";
     $dbname = "clase7";
     $username = "devuser";
@@ -10,13 +10,7 @@
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname, $serverport);
 
-    function createUserFromRow($row) {
-        $newUser = new User();
-        $newUser->setName($row['name']);
-        $newUser->setEmail($row['email']);
-
-        return $newUser;
-    }
+    
 ?>
 <html>
     <head>
@@ -28,8 +22,9 @@
             $result = $conn->query($sql);
             foreach ($result as $k => $row) 
             {
-                $user = createUserFromRow($row);
-                echo "<li>name: {$user->getName()}</li>";
+                //para llaamr a una funcion de una clase, hay que usar la llamada a funciones de objetos, que es poner antes de la llaamda a la funcion el nombre de la clase con "::"
+                $user = User::createUserFromRow($row);
+                echo "<li>name: {$user->getName()} email: {$user->getEmail()}</li>";
             }
         ?>
     </body>
