@@ -1,17 +1,9 @@
 <?php
     require_once('./model/User.php');    
+    require_once('./model/Todo.php');    
     require_once('./repository/UserRepository.php');
-
-    $servername = "mysql_db_C8";
-    $serverport = "3306";
-    $dbname = "clase8";
-    $username = "devuser";
-    $password = "devpass";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname, $serverport);
-
-    $userRepository = new UserRepository($conn);
+    require_once('./repository/TodoRepository.php');
+    require_once('./services/dbConnectionManager.php');
 ?>
 <html>
     <head>
@@ -34,6 +26,7 @@
             $users = $userRepository->getAll();
 
             foreach ($users as $user) {
+                $isTodo = false;
                 echo "<tr>";
                     echo "<td>{$user->getId()}</td>";
                     echo "<td>{$user->getName()}</td>";
@@ -41,8 +34,21 @@
                     echo "<td>{$user->getSexo()}</td>";
                     echo "<td>
                         <a href='update-user.php?user={$user->getId()}'>Update</a>
-                        <a href='delete-user.php?user={$user->getId()}'>Delete</a>
-                    </td>";
+                        <a href='delete-user.php?user={$user->getId()}'>Delete</a>";
+                        $task = $todoRepository->getAll();
+                    foreach ($task as $todo) {
+                        if ($todo->getUserId() == $user->getId()){
+                           $isTodo = true;
+                        }
+                        
+                    }
+                    if (!$isTodo)  {
+                        echo "No hay tareas";
+                    } 
+                    else {
+                        echo "<a href='todo-list-by-user.php?user={$user->getId()}'>Ver Tareas</a>";
+                    }
+                    echo"</td>";
                 echo "</tr>";
             }
         ?>
