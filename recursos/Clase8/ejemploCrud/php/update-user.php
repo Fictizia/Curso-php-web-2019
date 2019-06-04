@@ -1,32 +1,26 @@
 <?php
     require_once('./model/User.php');    
     require_once('./repository/UserRepository.php');
+    require_once('./repository/CarRepository.php');
+    require_once('./services/bdConectionManager.php');
+    require_once('./services/requestManager.php');
 
-    $servername = "mysql_db_C8";
-    $serverport = "3306";
-    $dbname = "clase8";
-    $username = "devuser";
-    $password = "devpass";
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname, $serverport);
-
-    $userRepository = new UserRepository($conn);
     
     $userId = $_GET['user'];
     $user = $userRepository->getById($userId);
-     
+    $isAPost = isCreatePost();
+
+
+
     $userName = $_POST['name'];
     $userEmail = $_POST['email'];
     $userSex = $_POST['sex'];
 
-    $isAPost = false;
-    if ($userName && $userEmail && $userSex) {
-        $isAPost = true;
-    }
 ?>
 
-<h1>UPDATE User con ID PON AQUI LA ID</h1>
+
+<?php echo "<h1>UPDATE User con ID $userId </h1>";  ?>
 
 <?php
     if ($user) {
@@ -44,11 +38,18 @@
     }
 
     if ($user && $isAPost) {
-        $userToUpdate = $userRepository::createFromVariables($userId, $userName, $userEmail, $userSex);
+        
+        $userToUpdate = UserNormalizer::createFromVariables($userId, $userName, $userEmail, $userSex);
         $updated = $userRepository->update($userToUpdate);
         if ($updated) {
             $user = $userRepository->getByEmail($userEmail);
-            echo "<p>usuario modicado: @TODO PINTA AQUI LOS DATOS</p>";
+            echo "<p>usuario modicado:</p>" . "<ul>
+            <li>$userId</li>
+            <li>$userName</li>
+            <li>$userEmail</li>
+            <li>$userSex</li>
+            </ul>";
+
         } else {
             echo "<p>usuario no pudo ser modificado</p>";
             echo "<p>{$conn->err}</p>";

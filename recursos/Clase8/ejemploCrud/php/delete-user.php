@@ -1,17 +1,8 @@
 <?php
     require_once('./model/User.php');    
     require_once('./repository/UserRepository.php');
-
-    $servername = "mysql_db_C8";
-    $serverport = "3306";
-    $dbname = "clase8";
-    $username = "devuser";
-    $password = "devpass";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname, $serverport);
-
-    $userRepository = new UserRepository($conn);
+    require_once('./repository/CarRepository.php');
+    require_once('./services/bdConectionManager.php');
     
     $userId = $_GET['user'];
 ?>
