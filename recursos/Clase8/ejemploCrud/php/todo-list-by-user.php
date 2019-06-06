@@ -16,9 +16,10 @@
           
         <?php
             $isTodo = false;
+            
             $userTodos = $todoRepository->getByUserId($userId);
-
             $task = $todoRepository->getAll();
+            
                     foreach ($task as $todo) {
                         if ($todo->getUserId() == $userId){
                             $isTodo = true;

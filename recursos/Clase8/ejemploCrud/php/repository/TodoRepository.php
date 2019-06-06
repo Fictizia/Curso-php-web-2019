@@ -40,7 +40,8 @@ Class TodoRepository
 
     public function getByTask($task)
     {
-        $sql = "SELECT * FROM todos WHERE todo = '{$task}'";
+        $sql = "SELECT * FROM todos WHERE item = '{$task}'";
+        var_dump($sql);
         $result = $this->dbConnection->query($sql);   
         $row = $result->fetch_array();
         if ($row) {
@@ -71,14 +72,15 @@ Class TodoRepository
 
     public function insert($todo)
     {
+        var_dump($todo);
         $sql = "INSERT INTO `clase8`.`todos` 
-                    (`todo`, `user_id`) 
+                    (`item`, `user_id`) 
                 VALUES (
                      '{$todo->getTodo()}',
-                     '{$todo->getUserId()}',
+                     '{$todo->getUserId()}'
                 )";
+                var_dump($sql);
         $result = $this->dbConnection->query($sql);
-
         return $result;      
     }
 
@@ -86,7 +88,7 @@ Class TodoRepository
     {
         $sql = "UPDATE `clase8`.`todos` 
                 SET 
-                    todo = '{$todos->getTodo()}',
+                    item = '{$todos->getTodo()}',
                 WHERE id = {$todos->getId()}
                 ";
         $result = $this->dbConnection->query($sql);

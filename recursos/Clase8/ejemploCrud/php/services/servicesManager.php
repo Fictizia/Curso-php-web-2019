@@ -12,5 +12,15 @@ function isAPost() {
     return $isAPost;
 }
 
+$isATodoPost = false;
+function isATodoPost() {
+    $userTask = $_POST['task'];
+    $userId = $_POST['userId'];
+    
+    if ($userTask && $userId) {
+        $isATodoPost = true;
+    }
+    return $isATodoPost;
+}
 
 ?>
