@@ -6,6 +6,7 @@ Class Car
     protected $marca;
     protected $color;
     protected $kilometros;
+    protected $user;
 
 
     public function getId()
@@ -38,13 +39,22 @@ Class Car
         $this->color = $color;
     }
 
-    public function getkilometros()
+    public function getKilometros()
     {
         return $this->kilometros;
     }
 
-    public function setkilometrosHora($kilometros)
+    public function setKilometros($kilometros)
     {
         $this->kilometros = $kilometros;
+    }
+    public function getUser() : User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user)
+    {
+        $this->user = $user;
     }
 }

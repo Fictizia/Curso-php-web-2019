@@ -27,14 +27,14 @@
 
 <?php
 
-    if (isCreatePost()) {
-        $car = $carRepository->getByEmail($carColor);
+    if (isCreatePostCar()) {
+        $car = $carRepository->getByMarca($carMarca);
         if (!$car) {
             $newCar = CarNormalizer::createFromVariables(null, $carMarca, $carColor, $carKilometros);
 
             $created = $carRepository->insert($newCar);
             if ($created) {
-                $car = $carRepository->getByEmail($carColor);
+                $car = $carRepository->getByMarca($carMarca);
                 echo "<p>coche creado:</p>";
                 echo $car->getId();
                 
@@ -43,7 +43,7 @@
                 echo "<p>{$conn->err}</p>";
             }
         } else {
-            echo "<p>El color del coche: {$carColor} already exists</p>";
+            echo "<p>El color del coche: {$carMarca} already exists</p>";
         }
     }
 ?>

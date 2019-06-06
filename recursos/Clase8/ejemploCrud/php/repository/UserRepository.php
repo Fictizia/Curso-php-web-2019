@@ -36,10 +36,10 @@ Class UserRepository
         return $user;      
     }
 
-    public function getByEmail($email)
+    public function getByName($name)
     {
         $user = NULL;
-        $sql = "SELECT * FROM users WHERE email = '{$email}'";
+        $sql = "SELECT * FROM users WHERE name = '{$name}'";
         $result = $this->dbConnection->query($sql);
         $row = $result->fetch_array();
         if ($row) {

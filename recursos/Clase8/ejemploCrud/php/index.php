@@ -38,8 +38,10 @@
                             <a href='update-user.php?user={$user->getId()}'>Update</a>
                             <a href='delete-user.php?user={$user->getId()}'>Delete</a>
                         </td>";
-                       // echo "<td>{$car->getId()}</td>";
-                   // echo "</tr>";
+                       $cars = $carRepository->getAllByUserId($user->getId());
+                       echo "<td> " . count($cars) . " </td>";
+                      
+                   echo "</tr>";
                 }
             ?>
             </tbody>

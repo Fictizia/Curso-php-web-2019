@@ -9,7 +9,7 @@
     
     $carId = $_GET['car'];
     $car = $carRepository->getById($carId);
-    $isAPost = isCreatePost2();
+    $isAPost = isCreatePostCar();
 
 
 
@@ -26,10 +26,10 @@
     if ($car) {
         echo '
             <form action="update-car.php?car=' . $car->getId() .'" method="post">
-                <p>Car Id: <input type="text" marca="marca" value="' . $car->getId() . '"/></p>
-                <p>Car marca: <input type="text" marca="marca" value="' . $car->getMarca() . '" /></p>
-                <p>Car color: <input type="text" marca="color" value="' . $car->getColor() . '"/></p>
-                <p>Car kilometros: <input type="text" marca="kilometros" value="' . $car->getkilometros() . '"/></p>
+                <p>Car Id: <input type="text" name="id" value="' . $car->getId() . '"/></p>
+                <p>Car marca: <input type="text" name="marca" value="' . $car->getMarca() . '" /></p>
+                <p>Car color: <input type="text"  name="color" value="' . $car->getColor() . '"/></p>
+                <p>Car kilometros: <input type="text" name="kilometros" value="' . $car->getkilometros() . '"/></p>
                 <p><input type="submit" /></p>
             </form>
         ';
@@ -42,7 +42,7 @@
         $carToUpdate = CarNormalizer::createFromVariables($carId, $carMarca, $carColor, $carKilometros);
         $updated = $carRepository->update($carToUpdate);
         if ($updated) {
-            $car = $carRepository->getByColor($carColor);
+            $car = $carRepository->getByMarca($carMarca);
             echo "<p>Coche modicado:</p>" . "<ul>
             <li>$carId</li>
             <li>$carMarca</li>

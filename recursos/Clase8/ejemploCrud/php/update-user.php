@@ -26,7 +26,7 @@
     if ($user) {
         echo '
             <form action="update-user.php?user=' . $user->getId() .'" method="post">
-                <p>User Id: <input type="text" name="name" value="' . $user->getId() . '"/></p>
+                <p>User Id: <input type="text" name="id" value="' . $user->getId() . '"/></p>
                 <p>User name: <input type="text" name="name" value="' . $user->getName() . '" /></p>
                 <p>User email: <input type="text" name="email" value="' . $user->getEmail() . '"/></p>
                 <p>User sex (F/M/N): <input type="text" name="sex" value="' . $user->getSexo() . '"/></p>

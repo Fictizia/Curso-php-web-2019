@@ -28,13 +28,13 @@
 <?php
 
     if (isCreatePost()) {
-        $user = $userRepository->getByEmail($userEmail);
+        $user = $userRepository->getByName($userName);
         if (!$user) {
             $newUser = UserNormalizer::createFromVariables(null, $userName, $userEmail, $userSex);
 
             $created = $userRepository->insert($newUser);
             if ($created) {
-                $user = $userRepository->getByEmail($userEmail);
+                $user = $userRepository->getByName($userName);
                 echo "<p>usuario creado:</p>";
                 echo $user->getId();
                 
@@ -43,7 +43,7 @@
                 echo "<p>{$conn->err}</p>";
             }
         } else {
-            echo "<p>user with email: {$userEmail} already exists</p>";
+            echo "<p>user with email: {$userName} already exists</p>";
         }
     }
 ?>

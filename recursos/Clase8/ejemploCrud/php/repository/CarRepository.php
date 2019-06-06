@@ -86,4 +86,18 @@ Class CarRepository
         return $result;      
     }
 
+    public function getAllByUserId($userId)
+    {
+        $sql = "SELECT * FROM cars WHERE id = {$id}";
+        $result = $this->dbConnection->query($sql);
+        $carArray = [];
+        foreach ($result as $row) {
+            $userArray[] = CarNormalizer::createFromRow($row);
+        }
+
+        return $carArray;      
+    }
+
 }
+
+

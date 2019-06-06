@@ -16,7 +16,7 @@ function isCreatePost()
 
 
 
-function isCreatePost2()
+function isCreatePostCar()
 {
     $isAPost = false;
     $carMarca = $_POST['marca'];
