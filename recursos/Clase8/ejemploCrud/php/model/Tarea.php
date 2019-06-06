@@ -29,13 +29,13 @@ Class Tarea {
 
     }
 
-    protected function getIdUser(){
+    public function getIdUser(){
 
         return $this->idUser;
 
     }
 
-    protected function setIdUser($idUser){
+    public function setIdUser($idUser){
 
         $this->idUser = $idUser;
 

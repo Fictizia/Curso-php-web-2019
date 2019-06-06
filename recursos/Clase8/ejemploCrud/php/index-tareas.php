@@ -6,19 +6,19 @@
     require_once('./repository/UserRepository.php');
     require_once('./repository/TareaRepository.php');
     require_once('./services/dbConnectionManager.php');
-    require_once('./services/forms-users.php');
+    require_once('./services/forms-tareas.php');
          
 ?>
 <html>
     <head>
     </head>
     <body>
-        <h1>Panel de usuarios</h1>
+        <h1>Panel de Tareas</h1>
         <table class="table">
         <thead>
             
             <?php
-                cabeceraTabla("OPS");
+                cabeceraTablaTareas("OPS");
             ?>
 
             
@@ -31,22 +31,21 @@
              * los usuarios como un objeto de la clase User cada uno, por lo que $users sera un array que contendra tantos objetos 
              * como registros haya en la tabla
               */
-            $users = $userRepository->getAll();
+            $tareas = $tareaRepository->getAll();
 
             /**Recorremos el array $users y almacenamos cada objeto en $user  */
-            foreach ($users as $user) {
+            foreach ($tareas as $tarea) {
 
                 /**Como los objetos devueltos en el array por getAll son de la clase User, usamos las funciones de dicha clase
                  * para obtener los datos de cada usuario. Esto lo vamos a hacer en el fichero forms.php, llamando a la 
                  * funcion printForm() y pasandole dichos datos
                  */ 
 
-                 printForm(NULL, $user->getId(), $user->getName(), $user->getEmail(), $user->getSexo());  
+                 printFormTarea(NULL, $tarea->getId(), $tarea->getTarea(), $tarea->getIdUser());    
                 
             }
         ?>
         </tbody>
         </table>
-        <a href='create-user.php'>create user</a>
+        <a href='create-tarea.php'>create tarea</a>
     </body>
-</html>

@@ -17,4 +17,18 @@
         return $isAPost;
     }
 
+    function isAPostTarea(){
+
+        $tarea = $_POST['tarea'];
+        $idUser = $_POST['idUser'];
+
+
+        $isAPost = false;
+        if ($tarea && $idUser) {
+            $isAPost = true;
+        }
+
+        return $isAPost;
+    }
+
 ?>

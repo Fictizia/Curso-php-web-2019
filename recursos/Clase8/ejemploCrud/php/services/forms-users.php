@@ -2,6 +2,8 @@
 
 
     //Fichero para almacenar los formularios; es parte del controlador del modelo
+
+    
     function formCreateUpdate($createUpdate, $user){
 
         $titulo = ($user ? '<h1>' . $createUpdate . ' User con ID: ' . $user->getId() . 
@@ -20,7 +22,7 @@
     
 
 
-    function cabeceratabla($cabecera){
+    function cabeceraTabla($cabecera){
 
         if (!$cabecera){
             echo "<p>Usuario modicado: </p>";

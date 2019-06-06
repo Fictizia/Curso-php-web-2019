@@ -3,9 +3,11 @@
     /**Importamos los ficheros de las clases que se van a usar en este fichero */
     require_once('./model/User.php');    
     require_once('./repository/UserRepository.php');
+    require_once('./model/Tarea.php');    
+    require_once('./repository/TareaRepository.php');
     require_once('./services/dbConnectionManager.php');
     require_once('./services/requestManager.php');
-    require_once("./services/forms.php");
+    require_once("./services/forms-users.php");
     require_once("./normalizers/UserNormalizer.php");
     
     $userName = $_POST['name'];

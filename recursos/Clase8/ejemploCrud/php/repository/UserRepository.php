@@ -44,6 +44,7 @@ Class UserRepository
         $result = $this->dbConnection->query($sql);
 
         $row = $result->fetch_array();
+        var_dump($row);
         if ($row) {
             $user = UserNormalizer::createFromRow($row);
         }

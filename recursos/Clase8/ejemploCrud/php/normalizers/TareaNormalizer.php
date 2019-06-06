@@ -3,9 +3,6 @@ Class TareaNormalizer {
 
     public static function createFromRow($row) 
     {
-        var_dump($row['id']);
-        var_dump($row['tarea']);
-        var_dump($row['idusuario']);
         $newTarea = new Tarea();
         $newTarea->setId($row['id']);
         $newTarea->setTarea($row['tarea']);

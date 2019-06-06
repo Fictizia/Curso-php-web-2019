@@ -3,6 +3,8 @@
     /**Importamos los ficheros de las clases que se van a usar en este fichero */
     require_once('./model/User.php');    
     require_once('./repository/UserRepository.php');
+    require_once('./model/Tarea.php');    
+    require_once('./repository/TareaRepository.php');
     require_once('./services/dbConnectionManager.php');
 
     /**Recibimos por GET el Id del usuario que hemos enviado por hhtp desde el fichero index.php*/
