@@ -15,23 +15,18 @@
        
           
         <?php
-            $isTodo = false;
             
             $userTodos = $todoRepository->getByUserId($userId);
-            $task = $todoRepository->getAll();
-            
-                    foreach ($task as $todo) {
-                        if ($todo->getUserId() == $userId){
-                            $isTodo = true;
-                        }
-                        
-                    }
-                if ($isTodo){
+           
+                    var_dump($userTodos);
+   
                     echo "<ul>";
                      foreach($userTodos as $task){
+                         var_dump($task);
                          echo "<li>{$task->getTodo()}</li>";
                      }
-                }
+                     echo "</ul>"
+                
                     
             
         ?>

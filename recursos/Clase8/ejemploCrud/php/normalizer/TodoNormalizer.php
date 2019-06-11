@@ -5,11 +5,13 @@ Class TodoNormalizer {
 
     public static function createTodoFromRow($row) 
     {
-      
+        global $userRepository;
         $newTodo = new Todo();
         $newTodo->setId($row['id']);
         $newTodo->setTodo($row['item']);
         $newTodo->setUserId($row['user_id']);
+        $user = $userRepository->getById($row['user_id']);
+        $newTodo->setUser($user);
         return $newTodo;
     }
     

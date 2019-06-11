@@ -55,10 +55,11 @@ Class TodoRepository
         $sql = "SELECT * FROM todos WHERE user_id = '{$userId}'";
         $result = $this->dbConnection->query($sql);   
         $row = $result->fetch_array();
+     
         if ($row) {
             $todo = TodoNormalizer::createTodoFromRow($row);
         }
-
+        var_dump($todo);
         return $todo;       
     }
 

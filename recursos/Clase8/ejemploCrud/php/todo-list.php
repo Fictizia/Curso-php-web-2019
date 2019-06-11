@@ -28,6 +28,7 @@
                     echo "<td>{$todo->getId()}</td>";
                     echo "<td>{$todo->getTodo()}</td>";
                     echo "<td>{$todo->getUserId()}</td>";
+                    echo "<td>{$todo->getUser()->getName()}</td>";
                     echo "<td>
                     <a href='update-todo.php?tarea={$todo->getId()}'>Update</a>
                     <a href='delete-todo.php?tarea={$todo->getId()}'>Delete</a>";
