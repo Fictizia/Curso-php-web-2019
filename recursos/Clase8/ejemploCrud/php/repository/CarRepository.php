@@ -90,7 +90,6 @@ Class CarRepository
     {
     
         $sql = "SELECT id_user FROM cars WHERE id_user = {$userId}";
-    
         $result = $this->dbConnection->query($sql);
         $userArray = [];
         foreach ($result as $row) {
