@@ -29,7 +29,6 @@
                 if ($isTodo){
                     echo "<ul>";
                      foreach($userTodos as $task){
-                         var_dump($task);
                          echo "<li>{$task->getTodo()}</li>";
                      }
                 }

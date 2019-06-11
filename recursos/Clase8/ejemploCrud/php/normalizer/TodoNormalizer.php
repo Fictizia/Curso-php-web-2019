@@ -15,7 +15,6 @@ Class TodoNormalizer {
     
     public static function createTodoFromVariables($id, $todo, $userId) 
     {
-        var_dump($todo);
         $newTodo = new Todo();
         $newTodo->setId($id);
         $newTodo->setTodo($todo);

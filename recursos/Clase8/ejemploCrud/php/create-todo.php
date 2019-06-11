@@ -31,9 +31,7 @@
 
     if (isATodoPost()) {
             $newTodo = TodoNormalizer::createTodoFromVariables(null, $userTask, $userId);
-            var_dump($newTodo);
             $created = $todoRepository->insert($newTodo);
-            var_dump($todo);
             if ($created) {
                 $todo = $todoRepository->getByTask($userTask);
                 echo "<p>Tarea guardada con id {$todo->getId()}</p>";

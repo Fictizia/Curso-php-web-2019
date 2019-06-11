@@ -29,7 +29,7 @@ Class TodoRepository
         $todo = NULL;
         $sql = "SELECT * FROM todos WHERE id = {$id}";
         $result = $this->dbConnection->query($sql);
-
+        
         $row = $result->fetch_array();
         if ($row) {
             $todo = TodoNormalizer::createTodoFromRow($row);
@@ -41,7 +41,6 @@ Class TodoRepository
     public function getByTask($task)
     {
         $sql = "SELECT * FROM todos WHERE item = '{$task}'";
-        var_dump($sql);
         $result = $this->dbConnection->query($sql);   
         $row = $result->fetch_array();
         if ($row) {
@@ -65,32 +64,33 @@ Class TodoRepository
 
     public function delete($todo)
     {
-        $sql = "DELETE FROM todos WHERE id = {$todo->getId()}";
+        $sql = "DELETE FROM todos WHERE id = {$todo}";
         $result = $this->dbConnection->query($sql);
         return $result;      
     }
 
     public function insert($todo)
     {
-        var_dump($todo);
         $sql = "INSERT INTO `clase8`.`todos` 
                     (`item`, `user_id`) 
                 VALUES (
                      '{$todo->getTodo()}',
                      '{$todo->getUserId()}'
                 )";
-                var_dump($sql);
         $result = $this->dbConnection->query($sql);
         return $result;      
     }
 
     public function update($todo)
     {
+       
         $sql = "UPDATE `clase8`.`todos` 
                 SET 
-                    item = '{$todos->getTodo()}',
-                WHERE id = {$todos->getId()}
+                    item = '{$todo->getTodo()}',
+                    user_id = '{$todo->getUserId()}'
+                WHERE id = {$todo->getId()}
                 ";
+     var_dump($sql);
         $result = $this->dbConnection->query($sql);
 
         return $result;      
