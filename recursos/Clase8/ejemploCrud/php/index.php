@@ -60,6 +60,7 @@
                 <th>Color</th>
                 <th>kilometros</th>
                 <th>OPS</th>
+                <th>NDU</th>
                 </tr>
             </thead>
             <tbody>
@@ -77,6 +78,9 @@
                             <a href='update-car.php?car={$car->getId()}'>Update</a>
                             <a href='delete-car.php?car={$car->getId()}'>Delete</a>
                         </td>";
+                        var_dump($car->getUser);
+                        echo "<td> " . $car->getUser()->getName() . " </td>";
+                        
                     echo "</tr>";
                 }
             ?>

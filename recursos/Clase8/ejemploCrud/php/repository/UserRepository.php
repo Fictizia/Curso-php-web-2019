@@ -1,5 +1,6 @@
 <?php
 require_once('./Normalizer/UserNormalizer.php'); 
+require_once('./Normalizer/CarNormalizer.php'); 
 
 Class UserRepository
 {
@@ -27,7 +28,6 @@ Class UserRepository
         $user = NULL;
         $sql = "SELECT * FROM users WHERE id = {$id}";
         $result = $this->dbConnection->query($sql);
-
         $row = $result->fetch_array();
         if ($row) {
             $user = UserNormalizer::createFromRow($row);
@@ -45,8 +45,6 @@ Class UserRepository
         if ($row) {
             $user = UserNormalizer::createFromRow($row);
         }
-      
-
         return $user;      
     }
 
@@ -80,13 +78,26 @@ Class UserRepository
                     sexo = '{$user->getSexo()}'   
                 WHERE id = {$user->getId()}
                 ";
-        var_dump($sql);
+        
         $result = $this->dbConnection->query($sql);
 
         return $result;      
     }
 
+ 
+
+
 }
+
+
+
+
+
+
+
+
+
+
 
 /*
 

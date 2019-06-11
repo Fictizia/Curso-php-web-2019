@@ -7,11 +7,16 @@
 
         public static function createFromRow($row) 
         {
+            global $userRepository;
             $newCar = new Car();
             $newCar->setId($row['id']);
             $newCar->setMarca($row['marca']);
             $newCar->setColor($row['color']);
             $newCar->setKilometros($row['kilometros']);
+            if($row['id_user']){
+                $user = $userRepository->getById($row['id_user']);
+                $newCar->setUser($user);
+            }
             return $newCar;
         }
         
