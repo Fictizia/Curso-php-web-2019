@@ -79,10 +79,10 @@
                                 <a href='delete-car.php?car={$car->getId()}'>Delete</a>
                             </td>";
                         
-                        if($car->getUser != NULL){
-                            echo "<td> " . $car->getUser()->getId() . " </td>";    
+                        if(empty($car->getUser())){
+                            echo "<td> " . "No asignado" . " </td>";  
                         }else{
-                            echo "<td> " . "No asignado" . " </td>";                      
+                            echo "<td> " . $car->getUser()->getName() . " </td>";                   
                         }
 
 
