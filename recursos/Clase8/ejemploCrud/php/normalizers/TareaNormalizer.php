@@ -1,13 +1,20 @@
 <?php
 Class TareaNormalizer {
 
-    public static function createFromRow($row) 
+    public static function createFromRow($row, $hidrate = false) 
     {
+        global $userRepository;
+        
         $newTarea = new Tarea();
         $newTarea->setId($row['id']);
         $newTarea->setTarea($row['tarea']);
         $newTarea->setIdUser($row['idusuario']);
-
+        if ($hidrate)  {
+            $user = $userRepository->getById($row['idusuario']);
+            if($user) {
+                $newTarea->setUser($user);
+            }
+        }
         return $newTarea;
     }
     

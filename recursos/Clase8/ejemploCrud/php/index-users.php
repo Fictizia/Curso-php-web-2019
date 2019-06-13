@@ -40,8 +40,21 @@
                  * para obtener los datos de cada usuario. Esto lo vamos a hacer en el fichero forms.php, llamando a la 
                  * funcion printForm() y pasandole dichos datos
                  */ 
+                
+                $tareas = $user->getTareas(); 
 
-                 printForm(NULL, $user->getId(), $user->getName(), $user->getEmail(), $user->getSexo());  
+                $arrayTareas = [];
+                if($tareas){
+                    foreach($tareas as $tarea){
+                        $arrayTareas[] = $tarea->getTarea();
+                    }
+                    $tareas = implode(',', $arrayTareas);
+                }else{
+                    $tareas = 'No tiene tareas asignadas';
+                }
+                
+
+                printForm(NULL, $user->getId(), $user->getName(), $user->getEmail(), $user->getSexo(), $tareas);
                 
             }
         ?>

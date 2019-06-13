@@ -4,10 +4,10 @@
     //Fichero para almacenar los formularios; es parte del controlador del modelo
 
     
-    function formCreateUpdateTareas($createUpdate, $tarea){
+    function formCreateUpdateTarea($createUpdate, $tarea){
 
         $titulo = ($tarea ? '<h1>' . $createUpdate . ' Tarea con ID: ' . $tarea->getId() . 
-        '</h1> <form action="update-tarea.php?user=' . $tarea->getId() .'" method="post"><p>Tarea Id: <input type="text" name="idTarea" value="' . 
+        '</h1> <form action="update-tarea.php?tarea=' . $tarea->getId() .'" method="post"><p>Tarea Id: <input type="text" name="idTarea" value="' . 
         $tarea->getId() . '"/></p>' :  '<h1>' . $createUpdate . ' Tarea</h1> <form action="create-tarea.php" method="post">');
 
         echo ($titulo);
@@ -19,7 +19,7 @@
 
     }
 
-    function cabeceraTablaTareas($cabecera){
+    function cabeceraTablaTarea($cabecera){
 
         if (!$cabecera){
             echo "<p>Tarea modicada: </p>";
@@ -54,8 +54,8 @@
              /* Tambien creamos enlaces en cada usuario para Update y para Delete, pasando por http la Id del usuario, 
                 que la recibiremos por GET en el fichero correspondiente */
                 echo "<td>                        
-                    <a href='update-tarea.php?user={$tareaId}'>Update</a>
-                    <a href='delete-tarea.php?user={$tareaId}'>Delete</a>
+                    <a href='update-tarea.php?tarea={$tareaId}'>Update</a>
+                    <a href='delete-tarea.php?tarea={$tareaId}'>Delete</a>
                     </td>";
                 echo "</tr>";
 

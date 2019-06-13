@@ -28,13 +28,13 @@
 
         public function getById($id){
 
-            $sql = "SELECT * FROM tareas WHERE id = '{$id}'";
+            $sql = "SELECT * FROM tareas WHERE id = {$id}";
 
             $result = $this->dbConnection->query($sql);
 
             $row = $result->fetch_array();
 
-            if ($result){
+            if ($row){
                 $tarea = TareaNormalizer::createFromRow($row);
             }
 
@@ -51,26 +51,36 @@
 
             $row = $result->fetch_array();
 
-            if ($result){
+            if ($row){
                 $tarea = TareaNormalizer::createFromRow($row);
-                var_dump($tarea);
             }
 
             return $tarea;
         }
 
-        public function getByIdUser($idUser){
+        public function getByIdUser($idUser, $hidrated = false){
 
-            $sql = "SELECT * FROM tareas WHERE idusuario = '{$idUser}'";
+            $sql = "SELECT * FROM tareas WHERE idusuario = {$idUser}";
 
             $result = $this->dbConnection->query($sql);
 
-            foreach($result as $k => $row){
-                $tarea = TareaNormalizer::createFromRow($row);
-                
+            $tareas = [];
+
+            if($hidrated){
+                foreach($result as $k => $row){
+                    $tareas[] = TareaNormalizer::createFromRow($row, true);
+                    
+                }
+            }else{
+                foreach($result as $k => $row){
+                    $tareas[] = TareaNormalizer::createFromRow($row);
+                    
+                }
             }
 
-            return $tarea;
+            
+
+            return $tareas;
         }
 
 
@@ -86,7 +96,7 @@
             $sql = "INSERT INTO `clase8`.`tareas` 
                     (`tarea`, `idusuario`) 
                     VALUES (
-                     '{$taera->getTarea()}',
+                     '{$tarea->getTarea()}',
                      '{$tarea->getIdUSer()}'
                     )";
              $result = $this->dbConnection->query($sql);

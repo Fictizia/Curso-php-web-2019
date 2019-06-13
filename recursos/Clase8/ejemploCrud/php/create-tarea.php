@@ -22,7 +22,9 @@
         $tarea = $tareaRepository->getByTarea($tipoTarea);
         if (!$tarea) {
             $newTarea = TareaNormalizer::createFromVariables(NULL, $tipoTarea, $idUser);
-            $created = $tareaRepository->insert($newTarea);
+            
+            $created = $tareaRepository->insertTarea($newTarea);
+
             if ($created) {
                 $tarea = $tareaRepository->getByTarea($tipoTarea);
                 echo "<p>Tarea creada con id '{$tarea->getId()}' </p>";

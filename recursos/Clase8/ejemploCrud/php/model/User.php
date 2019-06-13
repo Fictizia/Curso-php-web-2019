@@ -6,6 +6,11 @@ Class User
     protected $name;
     protected $email;
     protected $sexo;
+    protected $tareas;
+
+    function __construct() {
+        $this->tareas = [];
+    }
 
     public function getId()
     {
@@ -45,5 +50,14 @@ Class User
     public function setSexo($sexo)
     {
         $this->sexo = $sexo;
+    }
+
+    public function getTareas () 
+    {
+        return $this->tareas;
+    }
+
+    public function setTareas (array $tareas){
+        $this->tareas = $tareas;
     }
 }

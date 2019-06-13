@@ -36,13 +36,15 @@
             <th>Email</th>
             <th>Sex</th>";
             if($cabecera){
+
+                    echo "<th>TAREAS</th>";
                     echo "<th>$cabecera</th>";
              }
              echo " </b></tr>";
     }
 
 
-    function printForm($updated, $userId, $userName, $userEmail, $userSex){
+    function printForm($updated, $userId, $userName, $userEmail, $userSex, $userTareas){
 
         echo "<tr>
             <td>{$userId}</td>
@@ -59,7 +61,9 @@
 
              /* Tambien creamos enlaces en cada usuario para Update y para Delete, pasando por http la Id del usuario, 
                 que la recibiremos por GET en el fichero correspondiente */
-                echo "<td>                        
+                echo "
+                    <td>{$userTareas}</td>
+                    <td>                        
                     <a href='update-user.php?user={$userId}'>Update</a>
                     <a href='delete-user.php?user={$userId}'>Delete</a>
                     </td>";

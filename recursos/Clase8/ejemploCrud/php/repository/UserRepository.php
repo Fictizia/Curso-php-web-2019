@@ -16,9 +16,11 @@ Class UserRepository
         $sql = "SELECT * FROM users";
         $result = $this->dbConnection->query($sql);
         $userArray = [];
+
         foreach ($result as $row) {
-            $userArray[] = UserNormalizer::createFromRow($row);
+            $userArray[] = UserNormalizer::createFromRow($row, true);
         }
+        
 
         return $userArray;      
     }
@@ -44,12 +46,30 @@ Class UserRepository
         $result = $this->dbConnection->query($sql);
 
         $row = $result->fetch_array();
-        var_dump($row);
         if ($row) {
             $user = UserNormalizer::createFromRow($row);
         }
 
         return $user;      
+    }
+
+    public function getTareas($userId){
+
+        $sql = "SELECT * FROM tareas WHERE idusuario = $userId";
+
+        $result = $this->dbConnection->query($sql);
+
+        $tareasArray = [];
+        foreach ($result as $row) {
+            $tareasArray[] = TareaNormalizer::createFromRow($row);
+        }
+
+        foreach($tareasArray as $tarea){
+
+            $userTareas[] = $tarea->getTarea();
+        }
+
+        return $userTareas; 
     }
 
     public function delete($user)

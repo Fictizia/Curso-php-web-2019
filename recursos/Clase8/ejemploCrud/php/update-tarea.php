@@ -3,51 +3,55 @@
     /**Importamos los ficheros de las clases que se van a usar en este fichero */
     require_once('./model/User.php');    
     require_once('./repository/UserRepository.php');       
+    require_once('./model/Tarea.php');    
     require_once('./repository/TareaRepository.php');
     require_once('./services/dbConnectionManager.php');
     require_once('./services/requestManager.php');
     require_once("./services/forms-users.php");
     require_once("./normalizers/UserNormalizer.php");
+    require_once("./services/forms-tareas.php");
+    require_once("./normalizers/TareaNormalizer.php");
 
     /**Recibimos por GET el Id del usuario que hemos enviado por hhtp desde el fichero index.php*/
-    $userId = $_GET['user'];
+    $tareaId = $_GET['tarea'];
     
     /**Amacenamos en $user el objeto devuelto por la funcion getById con el usuario que buscamos */
-    $user = $userRepository->getById($userId);
+    $tarea = $tareaRepository->getById($tareaId);
+    
      
     /**Recibimos por POST los datos recibidos desde el formulario de este mismo fichero y los almacenamos en variables */
-    $userName = $_POST['name'];
-    $userEmail = $_POST['email'];
-    $userSex = $_POST['sex'];
-    $userId = $user->getId();
-    $create = "UPDATE";    
+    $tipoTarea = $_POST['tarea'];
+    $idUser = $_POST['idUser'];
+    $tareaId = $tarea->getId();
+    $create = "UPDATE";  
 
-    if ($user) {
+    if ($tarea) {
 
 
         //Llamamos a la funcion form del fichero forms.php para que cargue el formulario en la pagina
-        formCreateUpdate($create, $user);
+        formCreateUpdateTareas($create, $tarea);
         
     } else {
-        echo "user not found with id: {$userId}</p>";
+        echo "Tarea not found with id: {$tareaId}</p>";
     }
 
-    if ($user && isAPost()) {
-        $userToUpdate = UserNormalizer::createFromVariables($userId, $userName, $userEmail, $userSex);
-        $updated = $userRepository->update($userToUpdate);
+    if ($tarea && isAPostTarea()) {
+
+        $tareaToUpdate = TareaNormalizer::createFromVariables($tareaId, $tipoTarea, $idUser);
+        $updated = $tareaRepository->updateTarea($tareaToUpdate);
         if ($updated) {
-            $user = $userRepository->getByEmail($userEmail);
+            $tarea = $tareaRepository->getByTarea($tipoTarea);
 
-            cabeceraTabla(NULL);
+            cabeceraTablaTarea(NULL);
 
-            printForm($updated, $user->getId(), $user->getName(), $user->getEmail(), $user->getSexo());
+            printFormTarea($updated, $tarea->getId(), $tarea->getTarea(), $tarea->getIdUser());
             
 
         } else {
-            echo "<p>usuario no pudo ser modificado</p>";
+            echo "<p>Tarea no pudo ser modificada</p>";
             echo "<p>{$conn->err}</p>";
         }
     }
 
 ?>
-<a href='./index-users.php'>back to main </a>
+<a href='./index-tareas.php'>back to main </a>

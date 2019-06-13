@@ -40,6 +40,19 @@ Class Tarea {
         $this->idUser = $idUser;
 
     }
+    
+    public function getUser() : User
+    {
+
+        return $this->user;
+
+    }
+
+    public function setUser(User $user){
+
+        $this->user = $user;
+
+    }
 
     
 }

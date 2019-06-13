@@ -18,7 +18,7 @@
         <thead>
             
             <?php
-                cabeceraTablaTareas("OPS");
+                cabeceraTablaTarea("OPS");
             ?>
 
             
@@ -41,7 +41,9 @@
                  * funcion printForm() y pasandole dichos datos
                  */ 
 
-                 printFormTarea(NULL, $tarea->getId(), $tarea->getTarea(), $tarea->getIdUser());    
+                $nameUser = $tarea->getIdUser() ? $tarea->getUser()->getName() : 'No tiene usuario asignado';
+
+                printFormTarea(NULL, $tarea->getId(), $tarea->getTarea(), $nameUser);    
                 
             }
         ?>
