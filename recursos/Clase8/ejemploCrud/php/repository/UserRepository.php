@@ -1,5 +1,6 @@
 <?php
 require_once('./normalizer/UserNormalizer.php'); 
+require_once('./repository/TodoRepository.php'); 
 
 Class UserRepository
 {
@@ -52,6 +53,8 @@ Class UserRepository
 
     public function delete($user)
     {
+        global $todoRepository;
+        $todoRepository->deleteAllTodosByUser($user->getId());
         $sql = "DELETE FROM users WHERE id = {$user->getId()}";
         $result = $this->dbConnection->query($sql);
         return $result;      

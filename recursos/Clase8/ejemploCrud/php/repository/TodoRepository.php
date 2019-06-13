@@ -70,6 +70,13 @@ Class TodoRepository
         return $result;      
     }
 
+    public function deleteAllTodosByUser($userId)
+    {
+        $sql = "DELETE FROM todos WHERE user_id = {$userId}";
+        $result = $this->dbConnection->query($sql);
+        return $result;      
+    }
+
     public function insert($todo)
     {
         $sql = "INSERT INTO `clase8`.`todos` 

@@ -16,13 +16,17 @@
           
         <?php
             $user = $userRepository->getById($userId);
+            if ($user === NULL){
+                echo "<p>El usuario no existe</p>";
+            } else {
             echo "<p>Datos del usuario:</p>";
             echo "<p>{$user->getName()}</p>";
             echo "<p>{$user->getEmail()}</p>";
             echo "<p>{$user->getSexo()}</p><br>";
             echo "<h3>Tareas</h3>";
             $userTodos = $todoRepository->getByUserId($userId);
-           if(count($userTodos)== 0) {
+      
+           if(count($userTodos) == 0) {
                echo "<p>El usuario no tiene tareas</p>";
            } else {
    
@@ -36,8 +40,11 @@
                      }
                      echo "</ul>";
             echo "<a href='create-todo.php?user={$user->getId()}'>Añadir nueva tarea a este usuario</a><br>";
-            echo '<a href="index.php">Volver atrás</a>';
+            
                     }
+                }
+
+                echo '<a href="index.php">Volver atrás</a>';
         ?>
     
     </body>

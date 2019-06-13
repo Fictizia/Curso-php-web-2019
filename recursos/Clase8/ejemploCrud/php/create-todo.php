@@ -12,7 +12,7 @@
    
     
    
-    $userIdExist = $_GET['user'];
+    $userIdExist = $_GET['user'] || false;
     $userTask = $_POST['task'];
     $userId = $_POST['userId'];
 
@@ -22,7 +22,7 @@
 
  <form action="create-todo.php" method="post">
     <p>Task name: <input type="text" name="task" /></p>
-    <p>User Id: <input type="text" name="userId" value="<?php echo ($userIdExist ? $userIdExist : false) ?>"/></p>
+    <p>User Id: <input type="text" name="userId" value="<?php echo ($userIdExist) ?>"/></p>
     <p><input type="submit" /></p>
 </form> 
 
