@@ -43,7 +43,7 @@
                         
                     }
                     if (!$isTodo)  {
-                        echo "No hay tareas";
+                        echo "<a href='create-todo.php?user={$user->getId()}'>Añadir tarea</a>";
                     } 
                     else {
                         echo "<a href='todo-list-by-user.php?user={$user->getId()}'>Ver Tareas</a>";

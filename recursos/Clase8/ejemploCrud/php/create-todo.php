@@ -10,9 +10,9 @@
     require_once('./services/renderManager.php');
     require_once('./services/dbConnectionManager.php');
    
- 
-   
     
+   
+    $userIdExist = $_GET['user'];
     $userTask = $_POST['task'];
     $userId = $_POST['userId'];
 
@@ -22,7 +22,7 @@
 
  <form action="create-todo.php" method="post">
     <p>Task name: <input type="text" name="task" /></p>
-    <p>User Id: <input type="text" name="userId" /></p>
+    <p>User Id: <input type="text" name="userId" value="<?php echo ($userIdExist ? $userIdExist : false) ?>"/></p>
     <p><input type="submit" /></p>
 </form> 
 
@@ -42,5 +42,6 @@
         }
     
 ?>
-<a href='./index.php'>back to main </a>
+<a href='./index.php'>back to main </a><br>
+<a href='./todo-list-by-user.php?user=<?php echo ($userIdExist?:$userId) ?>'>volver a usuario </a>
 

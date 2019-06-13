@@ -60,7 +60,6 @@ Class TodoRepository
             $todosArray[] = TodoNormalizer::createTodoFromRow($row);
         }
        
-       
         return $todosArray;       
     }
 
