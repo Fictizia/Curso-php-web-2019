@@ -75,11 +75,19 @@
                         echo "<td>{$car->getColor()}</td>";
                         echo "<td>{$car->getKilometros()}</td>";
                         echo "<td>
-                            <a href='update-car.php?car={$car->getId()}'>Update</a>
-                            <a href='delete-car.php?car={$car->getId()}'>Delete</a>
-                        </td>";
-                        //var_dump($car->getUser);
-                        echo "<td> " . $car->getUser()->getName() . " </td>";
+                                <a href='update-car.php?car={$car->getId()}'>Update</a>
+                                <a href='delete-car.php?car={$car->getId()}'>Delete</a>
+                            </td>";
+                        
+                        if($car->getUser != NULL){
+                            echo "<td> " . $car->getUser()->getId() . " </td>";    
+                        }else{
+                            echo "<td> " . "No asignado" . " </td>";                      
+                        }
+
+
+                        
+
                         
                     echo "</tr>";
                 }

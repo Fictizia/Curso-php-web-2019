@@ -28,7 +28,6 @@ Class CarRepository
         $car = NULL;
         $sql = "SELECT * FROM cars WHERE id = {$id}";
         $result = $this->dbConnection->query($sql);
-
         $row = $result->fetch_array();
         if ($row) {
             $car = CarNormalizer::createFromRow($row);
@@ -47,7 +46,6 @@ Class CarRepository
             $car = CarNormalizer::createFromRow($row);
         }
       
-
         return $car;      
     }
 

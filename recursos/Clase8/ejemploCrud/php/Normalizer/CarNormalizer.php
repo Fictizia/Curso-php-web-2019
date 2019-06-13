@@ -13,11 +13,14 @@
             $newCar->setMarca($row['marca']);
             $newCar->setColor($row['color']);
             $newCar->setKilometros($row['kilometros']);
+           
             if($row['id_user']){
                 $user = $userRepository->getById($row['id_user']);
                 $newCar->setUser($user);
+           
             }
             return $newCar;
+
         }
         
         public static function createFromVariables($id, $marca, $color, $kilometros) 
