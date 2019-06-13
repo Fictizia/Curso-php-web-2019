@@ -55,12 +55,13 @@ Class TodoRepository
         $sql = "SELECT * FROM todos WHERE user_id = '{$userId}'";
         $result = $this->dbConnection->query($sql);   
         $row = $result->fetch_array();
-     
-        if ($row) {
-            $todo = TodoNormalizer::createTodoFromRow($row);
+        $todosArray = [];
+        foreach ($result as $row) {
+            $todosArray[] = TodoNormalizer::createTodoFromRow($row);
         }
-        var_dump($todo);
-        return $todo;       
+       
+       
+        return $todosArray;       
     }
 
     public function delete($todo)

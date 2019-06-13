@@ -34,7 +34,7 @@
                     echo "<td>{$user->getSexo()}</td>";
                     echo "<td>
                         <a href='update-user.php?user={$user->getId()}'>Update</a>
-                        <a href='delete-user.php?user={$user->getId()}'>Delete</a>";
+                        <a href='delete-user.php?user={$user->getId()}'>Delete</a></br>";
                         $task = $todoRepository->getAll();
                     foreach ($task as $todo) {
                         if ($todo->getUserId() == $user->getId()){
@@ -54,6 +54,7 @@
         ?>
         </tbody>
         </table>
-        <a href='create-user.php'>create user</a>
+        <a href='create-user.php'>create user</a><br/>
+        <a href='create-todo.php'>create todo</a>
     </body>
 </html>

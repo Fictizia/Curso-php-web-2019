@@ -18,17 +18,17 @@
             
             $userTodos = $todoRepository->getByUserId($userId);
            
-                    var_dump($userTodos);
    
                     echo "<ul>";
                      foreach($userTodos as $task){
-                         var_dump($task);
                          echo "<li>{$task->getTodo()}</li>";
+                         echo "<td>";
+                         echo "<a href='update-todo.php?tarea={$task->getId()}'>Update </a> || ";
+                         echo "<a href='delete-todo.php?tarea={$task->getId()}'>Delete</a></td>";
                      }
-                     echo "</ul>"
-                
+                     echo "</ul>";
                     
-            
+            echo '<a href="index.php">Volver atrás</a>';
         ?>
     
     </body>
